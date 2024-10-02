@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class SubscribeController extends AbstractController
 {
-    #[Route('/subscribe')]
+    #[Route('/subscribe', name: 'page_subscribe')]
     public function index(): Response
     {
         return $this->render('other/abonnements.html.twig');
