@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style/style.css" rel="stylesheet">
+    <link href="../../template-html/style/style.css" rel="stylesheet">
     <title>Streemi - Abonnements</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="font-montserrat text-sm bg-white " >
+<body class="font-montserrat text-sm bg-white ">
 <div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200">
-        {% include 'parts/left_menu.html.twig' %}
-
+    {% include 'parts/left_menu.html.twig' %}
     <main class=" flex-1 py-10  px-5 sm:px-10 ">
         <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden">
                 <span class="mr-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none"
+                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
                       </svg>
                 </span>
             <svg class="h-8 w-8 fill-red-600 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -28,80 +28,20 @@
         </header>
         <section>
             <h1 class="text-lg font-medium text-black">Nos <span class="font-bold text-red-600">abonnements</span></h1>
-            <p class="text-gray-400 text-lg mt-3">Profitez de notre catalogue exclusif de films & séries à prix concurentiel.</p>
+            <p class="text-gray-400 text-lg mt-3">Profitez de notre catalogue exclusif de films & séries à prix
+                concurentiel.</p>
             <div class="flex items-center font-medium mt-8 bg-gray-100 border border-black/10 rounded-lg px-8 py-4">
-                <svg class="h-5 w-5 fill-current opacity-50 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>information</title><path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+                <svg class="h-5 w-5 fill-current opacity-50 mr-2" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"><title>information</title>
+                    <path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                </svg>
                 Votre abonnement actuel : <span class="text-red-600 font-bold ml-2">Aucun</span>
             </div>
             <ul class="mt-9 grid grid-cols-2 gap-y-5 gap-x-5">
-                <li class="relative flex">
-                    <a href="" class="border-4 border-red-600 rounded-lg py-4 px-7 transition hover:bg-black/5">
-                        <div class="flex flex-row items-center justify-between">
-                            <div class="flex flex-col items-start justify-center">
-                                <h3 class="font-bold text-lg">Abonnement 1 mois - HD</h3>
-                                <span class="font-medium text-gray-400 text-nowrap">Le moins chère</span>
-                            </div>
-                            <span class="text-3xl font-bold">3€</span>
-                        </div>
-                        <p class="flex items-start justify-between mt-5 mb-8 text-md pr-3">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque in iure officiis suscipit vel.
-                        </p>
-                        <div>
-                            <button class="border-transparent bg-red-600 px-4 py-3 text-md text-white rounded-md">S'abonner</button>
-                        </div>
-                    </a>
-                </li>
-                <li class="relative flex">
-                    <a href="" class="border-4 border-red-600 rounded-lg py-4 px-7 transition hover:bg-black/5">
-                        <div class="flex items-center justify-between">
-                            <div class="flex flex-col items-start justify-center">
-                                <h3 class="font-bold text-lg">Abonnement 1 mois - 4K HDR</h3>
-                                <span class="font-medium text-gray-400 text-nowrap">Parfait pour découvrir</span>
-                            </div>
-                            <span class="text-3xl font-bold">6€</span>
-                        </div>
-                        <p class="flex items-start justify-between mt-5 mb-8 text-md pr-3">
-                            Ad asperiores autem deleniti eius enim expedita possimus sed. Ea illo itaque quam soluta veritatis.
-                        </p>
-                        <div>
-                            <button class="border-transparent bg-red-600 px-4 py-3 text-md text-white rounded-md">S'abonner</button>
-                        </div>
-                    </a>
-                </li>
-                <li class="relative flex">
-                    <a href="" class="border-4 border-red-600 rounded-lg py-4 px-7 transition hover:bg-black/5">
-                        <div class="flex items-center justify-between">
-                            <div class="flex flex-col items-start justify-center">
-                                <h3 class="font-bold text-lg">Abonnement 12 mois - HD</h3>
-                                <span class="font-medium text-gray-400 text-nowrap">Parfait pour découvrir</span>
-                            </div>
-                            <span class="text-3xl font-bold">30€</span>
-                        </div>
-                        <p class="flex items-start justify-between mt-5 mb-8 text-md pr-3">
-                            Blanditiis distinctio eaque et facilis id repellat saepe sint totam voluptas. Autem distinctio, esse laborum nam necessitatibus.
-                        </p>
-                        <div>
-                            <button class="border-transparent bg-red-600 px-4 py-3 text-md text-white rounded-md">S'abonner</button>
-                        </div>
-                    </a>
-                </li>
-                <li class="relative flex">
-                    <a href="" class="border-4 border-red-600 rounded-lg py-4 px-7 transition hover:bg-black/5">
-                        <div class="flex items-center justify-between">
-                            <div class="flex flex-col items-start justify-center">
-                                <h3 class="font-bold text-lg">Abonnement 12 mois - 4K HDR 3D</h3>
-                                <span class="font-medium text-gray-400 text-nowrap">Parfait pour découvrir</span>
-                            </div>
-                            <span class="text-3xl font-bold">30€</span>
-                        </div>
-                        <p class="flex items-start justify-between mt-5 mb-8 text-md pr-3">
-                            Dicta expedita iste magni maiores maxime natus nemo perspiciatis praesentium ratione rem, repellendus sunt vero vitae?
-                        </p>
-                        <div>
-                            <button class="border-transparent bg-red-600 px-4 py-3 text-md text-white rounded-md">S'abonner</button>
-                        </div>
-                    </a>
-                </li>
+                {% include 'parts/subscriptions/card_subscription.html.twig' %}
+                {% include 'parts/subscriptions/card_subscription.html.twig' %}
+                {% include 'parts/subscriptions/card_subscription.html.twig' %}
+                {% include 'parts/subscriptions/card_subscription.html.twig' %}
             </ul>
         </section>
     </main>

@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style/style.css" rel="stylesheet">
+    <link href="../../template-html/style/style.css" rel="stylesheet">
     <title>Streemi - Admin - Gérer les films</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="font-montserrat text-sm bg-white ">
 <div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200">
-        {% include 'parts/left_menu.html.twig' %}
-
+    {% include 'parts/left_menu.html.twig' %}
     <main class=" flex-1 py-10  px-5 sm:px-10 ">
         <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden mb-12 ">
                 <span class="mr-6">
@@ -29,7 +28,7 @@
         <section>
             <h1 class="text-lg font-medium text-black mb-9">Administration
                 <span class="font-bold text-red-600">des films/séries</span></h1>
-            <a class="flex flex-col items-center mt-9 w-full" href="admin_add_films.html.twig">
+            <a class="flex flex-col items-center mt-9 w-full" href="{{ path('admin_add_movies') }}">
                 <div class="relative flex w-full bg-red-600 flex-row p-3 items-center justify-center rounded-lg overflow-hidden border cursor-pointer transition hover:bg-red-700 text-white">
                     <span class="font-bold mr-2">
                         <svg class="h-6 w-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus-circle</title><path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/></svg>

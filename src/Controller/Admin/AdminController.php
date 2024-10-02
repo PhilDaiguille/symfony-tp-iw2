@@ -12,22 +12,16 @@ use Symfony\Component\Routing\Attribute\Route;
 #[AsController]
 class AdminController extends AbstractController
 {
-    #[Route('/admin')]
+    #[Route('/admin', name: 'page_admin')]
     public function index(): Response
     {
         return $this->render('admin/admin.html.twig');
     }
 
-    #[Route('/admin/films', name: 'admin_films')]
-    public function films(): Response
+    #[Route('/admin/add-movies', name: 'admin_add_movies')]
+    public function addmovies(): Response
     {
-        return $this->render('admin/admin_films.html.twig');
-    }
-
-    #[Route('/admin/add-films', name: 'admin_add_films')]
-    public function addFilms(): Response
-    {
-        return $this->render('admin/add_films.html.twig');
+        return $this->render('admin/admin_add_films.html.twig');
     }
 
     #[Route('/admin/users', name: 'admin_users')]

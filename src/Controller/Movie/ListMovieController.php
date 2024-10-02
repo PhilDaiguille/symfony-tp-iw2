@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Other;
+namespace App\Controller\Movie;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class UploadController extends AbstractController
+class ListMovieController extends AbstractController
 {
-    #[Route('/upload', name: 'page_upload')]
+    #[Route('/movie', name: 'page_movie_list')]
     public function index(): Response
     {
-        return $this->render('other/upload.html.twig');
+        return $this->render('movie/lists.html.twig');
     }
 }

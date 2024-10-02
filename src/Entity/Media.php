@@ -15,11 +15,11 @@ class Media
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(enumType: MediaTypeEnum::class)]
-    private ?MediaTypeEnum $mediaType = null;
-
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+
+    #[ORM\Column(enumType: MediaTypeEnum::class)]
+    private ?MediaTypeEnum $mediaType = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $shortDescription = null;
@@ -27,33 +27,27 @@ class Media
     #[ORM\Column(type: Types::TEXT)]
     private ?string $longDescription = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private ?\DateTimeImmutable $release_date = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?\DateTimeImmutable $releaseDate = null;
 
     #[ORM\Column(length: 255)]
     private ?string $coverImage = null;
 
+    /**
+     * @var array<string>
+     */
     #[ORM\Column]
     private array $staff = [];
 
+    /**
+     * @var array<string>
+     */
     #[ORM\Column]
     private array $casting = [];
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMediaType(): ?MediaTypeEnum
-    {
-        return $this->mediaType;
-    }
-
-    public function setMediaType(MediaTypeEnum $mediaType): static
-    {
-        $this->mediaType = $mediaType;
-
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -64,6 +58,18 @@ class Media
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getMediaType(): ?MediaTypeEnum
+    {
+        return $this->mediaType;
+    }
+
+    public function setMediaType(MediaTypeEnum $mediaType): static
+    {
+        $this->mediaType = $mediaType;
 
         return $this;
     }
@@ -94,12 +100,12 @@ class Media
 
     public function getReleaseDate(): ?\DateTimeImmutable
     {
-        return $this->release_date;
+        return $this->releaseDate;
     }
 
-    public function setReleaseDate(\DateTimeImmutable $release_date): static
+    public function setReleaseDate(\DateTimeImmutable $releaseDate): static
     {
-        $this->release_date = $release_date;
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
@@ -116,11 +122,17 @@ class Media
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getStaff(): array
     {
         return $this->staff;
     }
 
+    /**
+     * @param array<string> $staff
+     */
     public function setStaff(array $staff): static
     {
         $this->staff = $staff;
@@ -128,11 +140,17 @@ class Media
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getCasting(): array
     {
         return $this->casting;
     }
 
+    /**
+     * @param array<string> $casting
+     */
     public function setCasting(array $casting): static
     {
         $this->casting = $casting;

@@ -7,5 +7,5 @@ enum UserAccountStatusEnum: string
     case VALID = 'valid';
     case PENDING = 'pending';
     case BLOCKED = 'blocked';
-    CASE DELETED = 'deleted';
+    case DELETED = 'deleted';
 }

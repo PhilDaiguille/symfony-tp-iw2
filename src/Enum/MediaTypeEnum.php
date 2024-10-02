@@ -4,9 +4,6 @@ namespace App\Enum;
 
 enum MediaTypeEnum: string
 {
-    case IMAGE = 'image';
-    case VIDEO = 'video';
-    case AUDIO = 'audio';
-    case DOCUMENT = 'document';
-    case OTHER = 'other';
+    case MOVIE = 'movie';
+    case TV_SHOW = 'tv_show';
 }

@@ -8,4 +8,3 @@ enum CommentStatusEnum: string
     case VALIDATED = 'validated';
     case REJECTED = 'rejected';
 }
-
