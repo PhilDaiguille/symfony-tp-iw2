@@ -9,14 +9,10 @@
     <title>Mes films</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="font-montserrat text-sm bg-white ">
 <div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200">
-
     {% include 'parts/left_menu.html.twig' %}
-
     <main class=" flex-1 py-10  px-5 sm:px-10 ">
-
         <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden mb-12 ">
                 <span class="mr-6">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none"
@@ -30,14 +26,12 @@
             </svg>
             <div class="tracking-wideflex-1">MMovie<span class="text-red-600">.</span></div>
         </header>
-
         <section>
             <nav class="flex space-x-6 text-gray-400 font-medium">
-                <a href="#" class="hover:text-gray-700">Séries</a>
-                <a href="#" class="text-gray-700 font-semibold">Films</a>
+                <a href="{{ path('page_movie_detail_serie') }}" class="hover:text-gray-700">Séries</a>
+                <a href="{{ path('page_movie_detail') }}" class="text-gray-700 font-semibold">Films</a>
                 <a href="#" class="hover:text-gray-700 ">Animés</a>
             </nav>
-
             <div
                 class="flex flex-col bg-top justify-between mt-4 bg-black/10 bg-blend-multiply rounded-3xl h-80 overflow-hidden bg-cover bg-center px-7 pt-4 pb-6 text-white"
                 style="background-image: url('https://resize.elle.fr/original/var/plain_site/storage/images/loisirs/cinema/news/inception-films-et-series-a-regarder-si-vous-aimez-le-film-avec-leonardo-dicaprio/97088011-1-fre-FR/Inception-5-films-et-series-a-regarder-si-vous-aimez-le-film-avec-Leonardo-DiCaprio.jpg');">
@@ -50,13 +44,12 @@
                          src="https://random.imagecdn.app/100/100?c" alt="" srcset="">
                     <span class="pl-4 text-xs drop-shadow-lg">Recommandé par 12 amis</span>
                 </div>
-
                 <div class="bg-gradient-to-r from-black/40 to-transparent -mx-7 -mb-6 px-7 pb-6 pt-2">
                     <span class="uppercase text-3xl font-semibold drop-shadow-lg ">Inception</span>
                     <div class="text-xs text-gray-200 mt-2">
-                        <a href="#" class="">Action</a>,
-                        <a href="#" class="">Adventure</a>,
-                        <a href="#" class="">Sci-Fi</a>
+                        <a href="{{ path('page_movie_category') }}" class="">Action</a>,
+                        <a href="{{ path('page_movie_category') }}" class="">Adventure</a>,
+                        <a href="{{ path('page_movie_category') }}" class="">Sci-Fi</a>
                     </div>
                     <div class="mt-4 flex items-center justify-between">
                         <div class="flex space-x-3 items-center">
@@ -85,7 +78,6 @@
                 </div>
             </div>
         </section>
-
         <section class="mt-9">
             <div class="flex items-center justify-between">
                 <span class="font-semibold text-gray-700 text-base">Tendances</span>
@@ -100,7 +92,6 @@
                     </svg>
                 </div>
             </div>
-
             <ul class="mt-4 grid grid-cols-2 gap-y-5 sm:grid-cols-3 gap-x-5 ">
                 {% include 'parts/movies/square-card-movie.html.twig' %}
                 {% include 'parts/movies/square-card-movie.html.twig' %}
@@ -114,11 +105,7 @@
             </ul>
         </section>
     </main>
-
     {% include 'parts/right_menu.html.twig' %}
-
 </div>
-
 </body>
-
 </html>

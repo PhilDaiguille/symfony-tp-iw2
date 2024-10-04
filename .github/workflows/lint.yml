@@ -1,4 +1,4 @@
-name: CI
+name: Lint
 
 on:
   push:
@@ -35,3 +35,6 @@ jobs:
       -
         name: Run PHP-CS-Fixer
         run: composer cs-fix
+      -
+        name: Run TwigCS
+        run: composer twigcs
