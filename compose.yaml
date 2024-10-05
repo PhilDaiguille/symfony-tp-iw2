@@ -35,7 +35,17 @@ services:
 # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
-
+  adminer:
+    image: adminer:${ADMINER_VERSION:-latest}
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: database
+      ADMINER_DEFAULT_USERNAME: ${POSTGRES_USER:-app}
+      ADMINER_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+    ports:
+      - target: 8080
+        published: ${ADMINER_PORT:-8080}
+        protocol: tcp
 ###> doctrine/doctrine-bundle ###
   database:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
