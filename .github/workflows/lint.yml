@@ -27,14 +27,17 @@ jobs:
           php-version: 8.3
           extensions: intl, zip
       -
+        name: Validate composer.json and composer.lock
+        run: composer validate --strict
+      -
         name: Install dependencies
-        run: composer install
+        run: composer install --no-progress --no-suggest
       -
         name: Run PHPStan
-        run: composer phpstan
+        run: composer phpstan --no-progress
       -
         name: Run PHP-CS-Fixer
-        run: composer cs-fix
+        run: composer cs-fix --no-progress
       -
         name: Run TwigCS
-        run: composer twigcs
+        run: composer twigcs --no-progress
