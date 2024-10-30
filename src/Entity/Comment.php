@@ -36,9 +36,19 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $publisher = null;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'author')]
+    private Collection $authorComment;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?media $media = null;
+
     public function __construct()
     {
         $this->childComments = new ArrayCollection();
+        $this->authorComment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -120,6 +130,48 @@ class Comment
     public function setPublisher(?User $publisher): static
     {
         $this->publisher = $publisher;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getAuthorComment(): Collection
+    {
+        return $this->authorComment;
+    }
+
+    public function addAuthorComment(User $authorComment): static
+    {
+        if (!$this->authorComment->contains($authorComment)) {
+            $this->authorComment->add($authorComment);
+            $authorComment->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuthorComment(User $authorComment): static
+    {
+        if ($this->authorComment->removeElement($authorComment)) {
+            // set the owning side to null (unless already changed)
+            if ($authorComment->getAuthor() === $this) {
+                $authorComment->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMedia(): ?media
+    {
+        return $this->media;
+    }
+
+    public function setMedia(?media $media): static
+    {
+        $this->media = $media;
 
         return $this;
     }

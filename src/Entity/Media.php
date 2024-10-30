@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use App\Enum\MediaTypeEnum;
 use App\Repository\MediaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'mediaType', type: 'string')]
+#[ORM\DiscriminatorMap(['movie' => 'Movie', 'serie' => 'Serie'])]
 class Media
 {
     #[ORM\Id]
@@ -44,6 +49,28 @@ class Media
      */
     #[ORM\Column]
     private array $casting = [];
+
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'media')]
+    private Collection $comments;
+
+    #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PlaylistMedia $playlistMedia = null;
+
+    /**
+     * @var Collection<int, Category>
+     */
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'media')]
+    private Collection $categories;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +181,72 @@ class Media
     public function setCasting(array $casting): static
     {
         $this->casting = $casting;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setMedia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getMedia() === $this) {
+                $comment->setMedia(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPlaylistMedia(): ?PlaylistMedia
+    {
+        return $this->playlistMedia;
+    }
+
+    public function setPlaylistMedia(?PlaylistMedia $playlistMedia): static
+    {
+        $this->playlistMedia = $playlistMedia;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(category $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(category $category): static
+    {
+        $this->categories->removeElement($category);
 
         return $this;
     }

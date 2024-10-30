@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SubscriptionHistoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,6 +21,17 @@ class SubscriptionHistory
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $endAt = null;
+
+    /**
+     * @var Collection<int, user>
+     */
+    #[ORM\OneToMany(targetEntity: user::class, mappedBy: 'subscriptionHistory')]
+    private Collection $subscriptionId;
+
+    public function __construct()
+    {
+        $this->subscriptionId = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,6 +58,36 @@ class SubscriptionHistory
     public function setEndAt(\DateTimeImmutable $endAt): static
     {
         $this->endAt = $endAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, user>
+     */
+    public function getSubscriptionId(): Collection
+    {
+        return $this->subscriptionId;
+    }
+
+    public function addSubscriptionId(user $subscriptionId): static
+    {
+        if (!$this->subscriptionId->contains($subscriptionId)) {
+            $this->subscriptionId->add($subscriptionId);
+            $subscriptionId->setSubscriptionHistory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubscriptionId(user $subscriptionId): static
+    {
+        if ($this->subscriptionId->removeElement($subscriptionId)) {
+            // set the owning side to null (unless already changed)
+            if ($subscriptionId->getSubscriptionHistory() === $this) {
+                $subscriptionId->setSubscriptionHistory(null);
+            }
+        }
 
         return $this;
     }

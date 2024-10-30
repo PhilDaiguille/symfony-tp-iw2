@@ -38,31 +38,13 @@ class User
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'publisher')]
     private Collection $comments;
 
-    #[ORM\ManyToOne(inversedBy: 'authorComment')]
+    #[ORM\ManyToOne(inversedBy: 'author_comment')]
     #[ORM\JoinColumn(nullable: false)]
     private ?comment $author = null;
-
-    /**
-     * @var Collection<int, PlaylistSubscription>
-     */
-    #[ORM\OneToMany(targetEntity: PlaylistSubscription::class, mappedBy: 'playlist')]
-    private Collection $subscription;
-
-    /**
-     * @var Collection<int, WatchHistory>
-     */
-    #[ORM\OneToMany(targetEntity: WatchHistory::class, mappedBy: 'userId')]
-    private Collection $userId;
-
-    #[ORM\ManyToOne(inversedBy: 'subscriptionId')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?SubscriptionHistory $subscriptionHistory = null;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->subscription = new ArrayCollection();
-        $this->userId = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,78 +150,6 @@ class User
     public function setAuthor(?comment $author): static
     {
         $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PlaylistSubscription>
-     */
-    public function getSubscription(): Collection
-    {
-        return $this->subscription;
-    }
-
-    public function addSubscription(PlaylistSubscription $subscription): static
-    {
-        if (!$this->subscription->contains($subscription)) {
-            $this->subscription->add($subscription);
-            $subscription->setPlaylist($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSubscription(PlaylistSubscription $subscription): static
-    {
-        if ($this->subscription->removeElement($subscription)) {
-            // set the owning side to null (unless already changed)
-            if ($subscription->getPlaylist() === $this) {
-                $subscription->setPlaylist(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, WatchHistory>
-     */
-    public function getUserId(): Collection
-    {
-        return $this->userId;
-    }
-
-    public function addUserId(WatchHistory $userId): static
-    {
-        if (!$this->userId->contains($userId)) {
-            $this->userId->add($userId);
-            $userId->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserId(WatchHistory $userId): static
-    {
-        if ($this->userId->removeElement($userId)) {
-            // set the owning side to null (unless already changed)
-            if ($userId->getUserId() === $this) {
-                $userId->setUserId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getSubscriptionHistory(): ?SubscriptionHistory
-    {
-        return $this->subscriptionHistory;
-    }
-
-    public function setSubscriptionHistory(?SubscriptionHistory $subscriptionHistory): static
-    {
-        $this->subscriptionHistory = $subscriptionHistory;
 
         return $this;
     }
