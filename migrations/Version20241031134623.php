@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20241030115440 extends AbstractMigration
+final class Version20241031134623 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,12 +25,10 @@ final class Version20241030115440 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE episode_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE language_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE media_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE SEQUENCE movie_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE playlist_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE playlist_media_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE playlist_subscription_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE season_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE SEQUENCE serie_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE subscription_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE subscription_history_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE "user_id_seq" INCREMENT BY 1 MINVALUE 1 START 1');
@@ -44,6 +42,9 @@ final class Version20241030115440 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_DDAA1CDA68756988 ON episode (season_id_id)');
         $this->addSql('COMMENT ON COLUMN episode.released_at IS \'(DC2Type:date_immutable)\'');
         $this->addSql('CREATE TABLE language (id INT NOT NULL, nom VARCHAR(255) NOT NULL, code VARCHAR(3) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE language_media (language_id INT NOT NULL, media_id INT NOT NULL, PRIMARY KEY(language_id, media_id))');
+        $this->addSql('CREATE INDEX IDX_1574A55D82F1BAF4 ON language_media (language_id)');
+        $this->addSql('CREATE INDEX IDX_1574A55DEA9FDD75 ON language_media (media_id)');
         $this->addSql('CREATE TABLE media (id INT NOT NULL, playlist_media_id INT NOT NULL, title VARCHAR(255) NOT NULL, media_type VARCHAR(255) NOT NULL, short_description TEXT NOT NULL, long_description TEXT NOT NULL, release_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, cover_image VARCHAR(255) NOT NULL, staff JSON NOT NULL, casting JSON NOT NULL, mediaType VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_6A2CA10C17421B18 ON media (playlist_media_id)');
         $this->addSql('COMMENT ON COLUMN media.release_date IS \'(DC2Type:datetime_immutable)\'');
@@ -78,12 +79,16 @@ final class Version20241030115440 extends AbstractMigration
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526C40C86FCE FOREIGN KEY (publisher_id) REFERENCES "user" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526CEA9FDD75 FOREIGN KEY (media_id) REFERENCES media (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDA68756988 FOREIGN KEY (season_id_id) REFERENCES season (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE language_media ADD CONSTRAINT FK_1574A55D82F1BAF4 FOREIGN KEY (language_id) REFERENCES language (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE language_media ADD CONSTRAINT FK_1574A55DEA9FDD75 FOREIGN KEY (media_id) REFERENCES media (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE media ADD CONSTRAINT FK_6A2CA10C17421B18 FOREIGN KEY (playlist_media_id) REFERENCES playlist_media (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE media_category ADD CONSTRAINT FK_92D3773EA9FDD75 FOREIGN KEY (media_id) REFERENCES media (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE media_category ADD CONSTRAINT FK_92D377312469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE movie ADD CONSTRAINT FK_1D5EF26FBF396750 FOREIGN KEY (id) REFERENCES media (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE playlist_media ADD CONSTRAINT FK_C930B84F6BBD148 FOREIGN KEY (playlist_id) REFERENCES playlist (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE playlist_subscription ADD CONSTRAINT FK_832940C6BBD148 FOREIGN KEY (playlist_id) REFERENCES "user" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE season ADD CONSTRAINT FK_F0E45BA9B748AAC3 FOREIGN KEY (serie_id_id) REFERENCES serie (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE serie ADD CONSTRAINT FK_AA3A9334BF396750 FOREIGN KEY (id) REFERENCES media (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE "user" ADD CONSTRAINT FK_8D93D649DDE45DDE FOREIGN KEY (current_subscription_id) REFERENCES subscription (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE "user" ADD CONSTRAINT FK_8D93D649F675F31B FOREIGN KEY (author_id) REFERENCES comment (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE "user" ADD CONSTRAINT FK_8D93D649DCE0C437 FOREIGN KEY (subscription_history_id) REFERENCES subscription_history (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -99,12 +104,10 @@ final class Version20241030115440 extends AbstractMigration
         $this->addSql('DROP SEQUENCE episode_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE language_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE media_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE movie_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE playlist_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE playlist_media_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE playlist_subscription_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE season_id_seq CASCADE');
-        $this->addSql('DROP SEQUENCE serie_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE subscription_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE subscription_history_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE "user_id_seq" CASCADE');
@@ -113,12 +116,16 @@ final class Version20241030115440 extends AbstractMigration
         $this->addSql('ALTER TABLE comment DROP CONSTRAINT FK_9474526C40C86FCE');
         $this->addSql('ALTER TABLE comment DROP CONSTRAINT FK_9474526CEA9FDD75');
         $this->addSql('ALTER TABLE episode DROP CONSTRAINT FK_DDAA1CDA68756988');
+        $this->addSql('ALTER TABLE language_media DROP CONSTRAINT FK_1574A55D82F1BAF4');
+        $this->addSql('ALTER TABLE language_media DROP CONSTRAINT FK_1574A55DEA9FDD75');
         $this->addSql('ALTER TABLE media DROP CONSTRAINT FK_6A2CA10C17421B18');
         $this->addSql('ALTER TABLE media_category DROP CONSTRAINT FK_92D3773EA9FDD75');
         $this->addSql('ALTER TABLE media_category DROP CONSTRAINT FK_92D377312469DE2');
+        $this->addSql('ALTER TABLE movie DROP CONSTRAINT FK_1D5EF26FBF396750');
         $this->addSql('ALTER TABLE playlist_media DROP CONSTRAINT FK_C930B84F6BBD148');
         $this->addSql('ALTER TABLE playlist_subscription DROP CONSTRAINT FK_832940C6BBD148');
         $this->addSql('ALTER TABLE season DROP CONSTRAINT FK_F0E45BA9B748AAC3');
+        $this->addSql('ALTER TABLE serie DROP CONSTRAINT FK_AA3A9334BF396750');
         $this->addSql('ALTER TABLE "user" DROP CONSTRAINT FK_8D93D649DDE45DDE');
         $this->addSql('ALTER TABLE "user" DROP CONSTRAINT FK_8D93D649F675F31B');
         $this->addSql('ALTER TABLE "user" DROP CONSTRAINT FK_8D93D649DCE0C437');
@@ -127,6 +134,7 @@ final class Version20241030115440 extends AbstractMigration
         $this->addSql('DROP TABLE comment');
         $this->addSql('DROP TABLE episode');
         $this->addSql('DROP TABLE language');
+        $this->addSql('DROP TABLE language_media');
         $this->addSql('DROP TABLE media');
         $this->addSql('DROP TABLE media_category');
         $this->addSql('DROP TABLE movie');
