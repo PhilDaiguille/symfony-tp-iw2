@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EpisodeRepository;
+use Doctrine\DBAL\Types\DateImmutableType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,7 +22,7 @@ class Episode
     private ?int $duration = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private ?\DateTimeInterface $releasedAt = null;
+    private ?DateImmutableType $releasedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'episodes')]
     private ?Season $SeasonId = null;
