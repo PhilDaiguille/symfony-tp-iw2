@@ -1,0 +1,40 @@
+App\Entity\Subscription:
+  subscription_1:
+    name: 'Abonnement 1 mois - HD'
+    duration: 1
+    price: 3
+
+  subscription_2:
+    name: 'Abonnement 3 mois - HD'
+    duration: 3
+    price: 8
+
+  subscription_3:
+    name: 'Abonnement 6 mois - HD'
+    duration: 6
+    price: 15
+
+  subscription_4:
+    name: 'Abonnement 1 an - HD'
+    duration: 12
+    price: 25
+
+  subscription_5:
+    name: 'Abonnement 1 mois - 4K HDR'
+    duration: 1
+    price: 6
+
+  subscription_6:
+    name: 'Abonnement 3 mois - 4K HDR'
+    duration: 3
+    price: 15
+
+  subscription_7:
+    name: 'Abonnement 6 mois - 4K HDR'
+    duration: 6
+    price: 30
+
+  subscription_8:
+    name: 'Abonnement 1 an - 4K HDR'
+    duration: 12
+    price: 50

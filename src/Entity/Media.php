@@ -23,9 +23,6 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(enumType: MediaTypeEnum::class)]
-    private ?MediaTypeEnum $mediaType = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $shortDescription = null;
 
@@ -55,10 +52,6 @@ class Media
      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'media')]
     private Collection $comments;
-
-    #[ORM\ManyToOne(inversedBy: 'media')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?PlaylistMedia $playlistMedia = null;
 
     /**
      * @var Collection<int, Category>

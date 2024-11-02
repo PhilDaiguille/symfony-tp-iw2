@@ -1,0 +1,15 @@
+App\Entity\Movie:
+  movie_{1..50}:
+    title: 'Film n°<current()>'
+    longDescription: <paragraph()>
+    shortDescription: <sentence()>
+    coverImage: 'https://picsum.photos/1920/1080?random=<current()>'
+    releaseDate: <dateTimeBetween('+1 week', '+1 year')>
+
+App\Entity\Serie:
+  serie_{1..50}:
+    title: 'Série n°<current()>'
+    longDescription: <paragraph()>
+    shortDescription: <sentence()>
+    coverImage: 'https://picsum.photos/1920/1080?random=<current()>'
+    releaseDate: <dateTimeBetween('+1 week', '+1 year')>

@@ -1,0 +1,13 @@
+App\Entity\Comment:
+    comment_{1..50}:
+        content: '<paragraph(1, 5)>'
+        user: '@user_<numberBetween(1, 50)>'
+        media: '@media_<numberBetween(1, 50)>'
+        createdAt: '<dateTimeBetween("-1 year", "now")>'
+        updatedAt: '<dateTimeBetween($createdAt, "now")>'
+        parent: '@comment_<numberBetween(1, 50)>'
+        children: '@comment_<numberBetween(1, 50)>{1,5}'
+        likes: '<numberBetween(0, 50)>'
+        dislikes: '<numberBetween(0, 50)>'
+        reports: '<numberBetween(0, 50)>'
+        status: '<boolean(50)>'
