@@ -16,7 +16,7 @@ class Language
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $nom = null;
 
     #[ORM\Column(length: 3)]
     private ?string $code = null;
@@ -24,12 +24,12 @@ class Language
     /**
      * @var Collection<int, Media>
      */
-    #[ORM\ManyToMany(targetEntity: Media::class, inversedBy: 'languages')]
-    private Collection $media;
+    #[ORM\ManyToMany(targetEntity: Media::class, mappedBy: 'languages')]
+    private Collection $medias;
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
+        $this->medias = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -37,14 +37,14 @@ class Language
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNom(): ?string
     {
-        return $this->name;
+        return $this->nom;
     }
 
-    public function setName(string $name): static
+    public function setNom(string $nom): static
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -64,23 +64,26 @@ class Language
     /**
      * @return Collection<int, Media>
      */
-    public function getMedia(): Collection
+    public function getMedias(): Collection
     {
-        return $this->media;
+        return $this->medias;
     }
 
-    public function addMedium(Media $medium): static
+    public function addMedia(Media $media): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
+        if (!$this->medias->contains($media)) {
+            $this->medias->add($media);
+            $media->addLanguage($this);
         }
 
         return $this;
     }
 
-    public function removeMedium(Media $medium): static
+    public function removeMedia(Media $media): static
     {
-        $this->media->removeElement($medium);
+        if ($this->medias->removeElement($media)) {
+            $media->removeLanguage($this);
+        }
 
         return $this;
     }

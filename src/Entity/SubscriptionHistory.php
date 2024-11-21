@@ -3,9 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\SubscriptionHistoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubscriptionHistoryRepository::class)]
@@ -16,22 +13,19 @@ class SubscriptionHistory
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    #[ORM\Column]
     private ?\DateTimeImmutable $startAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    #[ORM\Column]
     private ?\DateTimeImmutable $endAt = null;
 
-    /**
-     * @var Collection<int, user>
-     */
-    #[ORM\OneToMany(targetEntity: user::class, mappedBy: 'subscriptionHistory')]
-    private Collection $subscriptionId;
+    #[ORM\ManyToOne(inversedBy: 'subscriptionHistories')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $subscriber = null;
 
-    public function __construct()
-    {
-        $this->subscriptionId = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'subscriptionHistories')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Subscription $subscription = null;
 
     public function getId(): ?int
     {
@@ -62,32 +56,26 @@ class SubscriptionHistory
         return $this;
     }
 
-    /**
-     * @return Collection<int, user>
-     */
-    public function getSubscriptionId(): Collection
+    public function getSubscriber(): ?User
     {
-        return $this->subscriptionId;
+        return $this->subscriber;
     }
 
-    public function addSubscriptionId(user $subscriptionId): static
+    public function setSubscriber(?User $subscriber): static
     {
-        if (!$this->subscriptionId->contains($subscriptionId)) {
-            $this->subscriptionId->add($subscriptionId);
-            $subscriptionId->setSubscriptionHistory($this);
-        }
+        $this->subscriber = $subscriber;
 
         return $this;
     }
 
-    public function removeSubscriptionId(user $subscriptionId): static
+    public function getSubscription(): ?Subscription
     {
-        if ($this->subscriptionId->removeElement($subscriptionId)) {
-            // set the owning side to null (unless already changed)
-            if ($subscriptionId->getSubscriptionHistory() === $this) {
-                $subscriptionId->setSubscriptionHistory(null);
-            }
-        }
+        return $this->subscription;
+    }
+
+    public function setSubscription(?Subscription $subscription): static
+    {
+        $this->subscription = $subscription;
 
         return $this;
     }

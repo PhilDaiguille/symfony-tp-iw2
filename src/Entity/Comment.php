@@ -24,6 +24,7 @@ class Comment
     private ?CommentStatusEnum $status = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'childComments')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     private ?self $parentComment = null;
 
     /**
@@ -36,19 +37,13 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $publisher = null;
 
-    /**
-     * @var Collection<int, User>
-     */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'author')]
-    private Collection $authorComment;
-
     #[ORM\ManyToOne(inversedBy: 'comments')]
-    private ?media $media = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Media $media = null;
 
     public function __construct()
     {
         $this->childComments = new ArrayCollection();
-        $this->authorComment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,42 +129,12 @@ class Comment
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getAuthorComment(): Collection
-    {
-        return $this->authorComment;
-    }
-
-    public function addAuthorComment(User $authorComment): static
-    {
-        if (!$this->authorComment->contains($authorComment)) {
-            $this->authorComment->add($authorComment);
-            $authorComment->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAuthorComment(User $authorComment): static
-    {
-        if ($this->authorComment->removeElement($authorComment)) {
-            // set the owning side to null (unless already changed)
-            if ($authorComment->getAuthor() === $this) {
-                $authorComment->setAuthor(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getMedia(): ?media
+    public function getMedia(): ?Media
     {
         return $this->media;
     }
 
-    public function setMedia(?media $media): static
+    public function setMedia(?Media $media): static
     {
         $this->media = $media;
 

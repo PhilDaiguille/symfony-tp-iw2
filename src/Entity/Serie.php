@@ -13,11 +13,12 @@ class Serie extends Media
     /**
      * @var Collection<int, Season>
      */
-    #[ORM\OneToMany(targetEntity: Season::class, mappedBy: 'SerieId')]
+    #[ORM\OneToMany(targetEntity: Season::class, mappedBy: 'serie')]
     private Collection $seasons;
 
     public function __construct()
     {
+        parent::__construct();
         $this->seasons = new ArrayCollection();
     }
 
@@ -33,7 +34,7 @@ class Serie extends Media
     {
         if (!$this->seasons->contains($season)) {
             $this->seasons->add($season);
-            $season->setSerieId($this);
+            $season->setSerie($this);
         }
 
         return $this;
@@ -43,8 +44,8 @@ class Serie extends Media
     {
         if ($this->seasons->removeElement($season)) {
             // set the owning side to null (unless already changed)
-            if ($season->getSerieId() === $this) {
-                $season->setSerieId(null);
+            if ($season->getSerie() === $this) {
+                $season->setSerie(null);
             }
         }
 

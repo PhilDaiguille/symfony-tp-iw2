@@ -1,40 +1,28 @@
 App\Entity\Subscription:
-  subscription_1:
-    name: 'Abonnement 1 mois - HD'
-    duration: 1
-    price: 3
-
-  subscription_2:
-    name: 'Abonnement 3 mois - HD'
-    duration: 3
-    price: 8
-
-  subscription_3:
-    name: 'Abonnement 6 mois - HD'
-    duration: 6
-    price: 15
-
-  subscription_4:
-    name: 'Abonnement 1 an - HD'
-    duration: 12
+  subscription_monthly:
+    name: 'Abonnement mensuel'
     price: 25
-
-  subscription_5:
-    name: 'Abonnement 1 mois - 4K HDR'
     duration: 1
-    price: 6
-
-  subscription_6:
-    name: 'Abonnement 3 mois - 4K HDR'
-    duration: 3
-    price: 15
-
-  subscription_7:
-    name: 'Abonnement 6 mois - 4K HDR'
-    duration: 6
-    price: 30
-
-  subscription_8:
-    name: 'Abonnement 1 an - 4K HDR'
+  subscription_annual:
+    name: 'Abonnement annuel'
+    price: 120
     duration: 12
-    price: 50
+  subscription_lifetime:
+    name: 'Abonnement à vie'
+    price: 1500
+    duration: 9999
+  subscription_3_months:
+    name: 'Abonnement 3 mois'
+    price: 250
+    duration: 3
+  subscription_6_months:
+    name: 'Abonnement 6 mois'
+    price: 400
+    duration: 6
+
+App\Entity\SubscriptionHistory:
+  sub_history:
+    startAt: '<dateTimeBetween("-1 year", "now")>'
+    endAt: '<dateTimeBetween("now", "+1 year")>'
+    subscriber: '@user_*'
+    subscription: '@subscription_*'

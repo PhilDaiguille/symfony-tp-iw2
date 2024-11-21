@@ -15,16 +15,11 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-
-
         $this->setCategory($manager);
         $this->setLanguage($manager);
         $this->setMovie($manager);
     }
 
-    /**
-     * @param ObjectManager $manager
-     */
     public function setCategory(ObjectManager $manager): void
     {
         $categories = [
@@ -54,10 +49,6 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function setLanguage(ObjectManager $manager): void
     {
         $languages = [
@@ -87,10 +78,6 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function setMovie(ObjectManager $manager): void
     {
         $movie = new Movie();
@@ -104,13 +91,9 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function setSerie(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $serie = new Serie();
             $serie->setTitle('Avatar');
             $serie->setLongDescription('A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.');
@@ -119,15 +102,15 @@ class AppFixtures extends Fixture
             $serie->setCoverImage('https://fr.web.img4.acsta.net/pictures/22/08/25/09/04/2146702.jpg');
             $manager->persist($serie);
 
-            for ($j = 0; $j < 10; $j++) {
+            for ($j = 0; $j < 10; ++$j) {
                 $season = new Season();
                 $season->setNumber($j);
                 $season->setSerieId($serie->getId());
                 $manager->persist($season);
 
-                for ($k = 0; $k < 10; $k++) {
+                for ($k = 0; $k < 10; ++$k) {
                     $episode = new Episode();
-                    $episode->setTitle('Episode ' . $k + 1);
+                    $episode->setTitle('Episode '.$k + 1);
                     $episode->setReleasedAt(new \DateTimeImmutable('2009-12-18'));
                     $manager->persist($episode);
                 }
