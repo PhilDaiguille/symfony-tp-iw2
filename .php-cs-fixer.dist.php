@@ -2,8 +2,7 @@
 
 $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
-    ->exclude('var')
-;
+    ->exclude('var');
 
 return (new PhpCsFixer\Config())
     ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
@@ -14,5 +13,4 @@ return (new PhpCsFixer\Config())
         'single_quote' => true,
     ])
 
-    ->setFinder($finder)
-;
+    ->setFinder($finder);

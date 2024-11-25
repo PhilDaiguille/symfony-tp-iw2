@@ -82,8 +82,12 @@ class AppFixtures extends Fixture
     {
         $movie = new Movie();
         $movie->setTitle('Avatar');
-        $movie->setLongDescription('A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.');
-        $movie->setShortDescription('A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.');
+        $movie->setLongDescription(
+            'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.'
+        );
+        $movie->setShortDescription(
+            'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.'
+        );
         $movie->setReleaseDate(new \DateTimeImmutable('2009-12-18'));
         $movie->setCoverImage('https://fr.web.img4.acsta.net/pictures/22/08/25/09/04/2146702.jpg');
         $manager->persist($movie);
@@ -96,8 +100,12 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; ++$i) {
             $serie = new Serie();
             $serie->setTitle('Avatar');
-            $serie->setLongDescription('A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.');
-            $serie->setShortDescription('A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.');
+            $serie->setLongDescription(
+                'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.'
+            );
+            $serie->setShortDescription(
+                'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.'
+            );
             $serie->setReleaseDate(new \DateTimeImmutable('2009-12-18'));
             $serie->setCoverImage('https://fr.web.img4.acsta.net/pictures/22/08/25/09/04/2146702.jpg');
             $manager->persist($serie);
