@@ -1,0 +1,14 @@
+# Symfony
+/var/
+/vendor/
+/public/build/
+
+# Composer
+composer.lock
+
+# Node
+/node_modules/
+package-lock.json
+
+# Generated files
+*.cache

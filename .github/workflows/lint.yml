@@ -1,43 +1,38 @@
 name: Lint
 
 on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request: ~
-  workflow_dispatch: ~
+    push:
+        branches:
+            - main
+            - master
+    pull_request: ~
+    workflow_dispatch: ~
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+    group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-22.04
-    steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v4
-      -
-        name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          extensions: intl, zip
-      -
-        name: Validate composer.json and composer.lock
-        run: composer validate --strict
-      -
-        name: Install dependencies
-        run: composer install --no-progress --no-suggest
-      -
-        name: Run PHPStan
-        run: composer phpstan --no-progress
-      -
-        name: Run PHP-CS-Fixer
-        run: composer cs-fix --no-progress
-      -
-        name: Run TwigCS
-        run: composer twigcs --no-progress
+    lint:
+        name: Lint
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.3
+                  extensions: intl, zip
+            - name: Validate composer.json and composer.lock
+              run: composer validate --strict
+            - name: Install dependencies
+              run: composer install --no-progress --no-suggest
+            - name: Run PHPStan
+              run: composer phpstan --no-progress
+            - name: Run PHP-CS-Fixer
+              run: composer cs-fix --no-progress
+            - name: Run TwigCS
+              run: composer twigcs --no-progress
+            - name: Run prettier
+              run: npm run prettier:check

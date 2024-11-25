@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	file \
 	gettext \
 	git \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
@@ -32,6 +34,8 @@ RUN set -eux; \
 		opcache \
 		zip \
 	;
+
+RUN npm install -g npm@latest
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -85,6 +89,7 @@ COPY --link composer.* symfony.* ./
 RUN set -eux; \
 	composer install --no-cache --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress
 
+COPY --link package*.json ./
 # copy sources
 COPY --link . ./
 RUN rm -Rf frankenphp/
@@ -95,3 +100,9 @@ RUN set -eux; \
 	composer dump-env prod; \
 	composer run-script --no-dev post-install-cmd; \
 	chmod +x bin/console; sync;
+
+USER www-data
+
+RUN set -eux; \
+	bin/console cache:clear; \
+	bin/console cache:warmup;

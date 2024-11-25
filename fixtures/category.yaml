@@ -1,19 +1,19 @@
 App\Entity\Category:
-  category_action:
-    nom: 'action'
-    label: 'Action'
-  category_aventure:
-    nom: 'aventure'
-    label: 'Aventure'
-  category_comedie:
-    nom: 'comedie'
-    label: 'Comedie'
-  category_drame:
-    nom: 'drame'
-    label: 'Drame'
-  category_fantastique:
-    nom: 'fantastique'
-    label: 'Fantastique'
-  category_horreur:
-    nom: 'horreur'
-    label: 'Horreur'
+    category_action:
+        nom: 'action'
+        label: 'Action'
+    category_aventure:
+        nom: 'aventure'
+        label: 'Aventure'
+    category_comedie:
+        nom: 'comedie'
+        label: 'Comedie'
+    category_drame:
+        nom: 'drame'
+        label: 'Drame'
+    category_fantastique:
+        nom: 'fantastique'
+        label: 'Fantastique'
+    category_horreur:
+        nom: 'horreur'
+        label: 'Horreur'
