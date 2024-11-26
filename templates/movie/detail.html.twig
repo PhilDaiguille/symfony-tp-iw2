@@ -25,7 +25,7 @@
                 <path
                     d="M10 15.5v-7c0-.41.47-.65.8-.4l4.67 3.5c.27.2.27.6 0 .8l-4.67 3.5c-.33.25-.8.01-.8-.4Zm11.96-4.45c.58 6.26-4.64 11.48-10.9 10.9 -4.43-.41-8.12-3.85-8.9-8.23 -.26-1.42-.19-2.78.12-4.04 .14-.58.76-.9 1.31-.7v0c.47.17.75.67.63 1.16 -.2.82-.27 1.7-.19 2.61 .37 4.04 3.89 7.25 7.95 7.26 4.79.01 8.61-4.21 7.94-9.12 -.51-3.7-3.66-6.62-7.39-6.86 -.83-.06-1.63.02-2.38.2 -.49.11-.99-.16-1.16-.64v0c-.2-.56.12-1.17.69-1.31 1.79-.43 3.75-.41 5.78.37 3.56 1.35 6.15 4.62 6.5 8.4ZM5.5 4C4.67 4 4 4.67 4 5.5 4 6.33 4.67 7 5.5 7 6.33 7 7 6.33 7 5.5 7 4.67 6.33 4 5.5 4Z"></path>
             </svg>
-            <div class="tracking-wideflex-1">MMovie<span class="text-red-600">.</span></div>
+            <div class="tracking-wideflex-1">Movie<span class="text-red-600">.</span></div>
         </header>
         <section class="">
             <h1 class="text-lg font-medium text-black">Détails de <span
@@ -125,7 +125,7 @@
                 </h2>
                 <div class="flex items-center flex-wrap mt-9">
                     <span class="flex bg-black/10 m-0.5 px-1 py-0.5 rounded"><b class="mr-2">Durée</b> 2h40 mins</span>
-                    <span class="flex bg-black/10 m-0.5 px-1 py-0.5 rounded"><b class="mr-2">Date de sortie</b> 21 Octobre 2024</span>
+                    <span class="flex bg-black/10 m-0.5 px-1 py-0.5 rounded"><b class="mr-2">Date de sortie</b> {{ movie.releaseDate|date('d M Y') }}</span>
                     <span class="flex bg-black/10 m-0.5 px-1 py-0.5 rounded"><b class="mr-2">Notes</b> <span
                             class="flex space-x-2 items-center text-xs"><span>7.4</span><svg class="w-8 h-5"
                                                                                              xmlns="http://www.w3.org/2000/svg"
@@ -153,9 +153,7 @@
             <div class="max-w-3xl mx-auto mt-9">
                 <h2 class="text-lg font-medium text-black">Résumé <span class="font-bold text-red-600">rapide</span>
                 </h2>
-                <p class="text-md mt-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, consectetur
-                    deleniti deserunt ducimus harum iusto laboriosam minima nobis obcaecati odit officiis omnis
-                    quibusdam repellat repudiandae totam voluptas, voluptatem voluptatibus voluptatum.</p>
+                <p class="text-md mt-9">{{ movie.shortDescription }}</p>
             </div>
             <div class="max-w-3xl mx-auto mt-9">
                 <h2 class="text-lg font-medium text-black"><span class="font-bold text-red-600">Équipe</span> du film
@@ -270,52 +268,8 @@
                 <h2 class="text-lg font-medium text-black">Résumé <span class="font-bold text-red-600">détaillé</span>
                 </h2>
                 <p class="text-md mt-9">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dolor error ipsa mollitia
-                    necessitatibus perferendis perspiciatis quasi, quidem repellendus rerum. Autem culpa eum iusto
-                    magnam voluptatem. Autem doloribus esse natus! Ab commodi deserunt eaque eos incidunt laudantium
-                    magni neque officiis optio praesentium sint, voluptates!
-                    <br><br>Assumenda atque blanditiis dicta ducimus, eligendi ex fuga fugiat hic illo laboriosam
-                    maiores natus nemo, officiis pariatur perferendis quasi reiciendis repellat repellendus sit ullam,
-                    vitae voluptatem voluptatum? Aliquid amet, animi aspernatur consectetur cumque doloribus impedit
-                    nihil quidem recusandae totam. Alias architecto cumque cupiditate expedita laboriosam laudantium
-                    magni, minus possimus quisquam quod quos suscipit temporibus tenetur.
-                    <br><br>Accusamus adipisci aperiam, assumenda beatae corporis culpa dignissimos dolore dolorem
-                    doloremque dolores eveniet libero magnam molestiae molestias nam nulla officiis provident quasi quia
-                    quibusdam quod rem repudiandae similique suscipit temporibus velit voluptates. Culpa cum dolor est
-                    similique.
-                    <br><br>Exercitationem magnam, necessitatibus. Adipisci, amet asperiores aspernatur atque aut
-                    commodi cupiditate dolore ea earum et facilis, fuga in laudantium magnam nulla odio quas repudiandae
-                    sunt voluptas, voluptatem. Aspernatur, at cumque delectus dicta dolor ipsam laudantium minus
-                    mollitia odit pariatur quia suscipit temporibus velit. Aliquid non officia quo sed vero! Aperiam,
-                    cupiditate deserunt earum eligendi, esse excepturi impedit ipsam molestias obcaecati odio quibusdam,
-                    tempore unde voluptatibus? Asperiores corporis deleniti doloribus dolorum, eius est eum
-                    exercitationem iste molestias obcaecati quae quibusdam quisquam recusandae saepe sequi suscipit,
-                    tempora? Odit, quia, voluptatem! Doloribus nemo provident quasi quia veniam? Ab, at deserunt
-                    distinctio earum eveniet facilis ipsa nisi officia possimus sed suscipit, tempora unde. Architecto
-                    corporis delectus fugit quasi rerum tenetur.
-                    <br><br>Ad alias aut commodi consectetur consequatur, cumque delectus deleniti, distinctio dolore
-                    dolorum enim et excepturi facere facilis fugiat impedit incidunt ipsum labore maiores modi molestiae
-                    nam necessitatibus nisi numquam, obcaecati odit officiis perferendis placeat praesentium quaerat
-                    quia quos tempora vel? Amet cupiditate labore porro temporibus velit? Assumenda deleniti, rem.
-                    Corporis nemo nihil nisi quae totam! Alias aut itaque nostrum qui quia quisquam reiciendis soluta
-                    voluptates? Atque aut consectetur dicta distinctio dolor, eum, eveniet ipsam, praesentium recusandae
-                    reiciendis sapiente tenetur. Ad alias atque commodi culpa debitis delectus doloribus eaque eligendi
-                    est expedita fuga illo ipsam laborum libero modi nemo nobis nulla pariatur porro.
-                    <br><br>Quasi quidem quo reiciendis repellendus rerum sequi suscipit, tempore unde velit voluptate
-                    voluptatibus? Aperiam architecto cupiditate delectus dolore dolores doloribus earum eius eos in
-                    mollitia, non nostrum quasi quidem ratione rem repellendus sequi tempore, velit vitae voluptatum.
-                    Cumque, dignissimos dolor ea enim et illo magni mollitia nam nemo omnis, perferendis praesentium
-                    quae quidem quo voluptates! Eius harum id in, ipsa libero molestiae omnis provident quasi quisquam
-                    saepe, similique voluptates. Ad culpa dolores et explicabo, illo ipsum iusto labore magni nesciunt
-                    nisi nobis officiis optio quam quo ullam. Id, inventore iste molestias natus odio officia optio
-                    pariatur ut? Animi autem beatae blanditiis cum deserunt dicta dolorum ea eligendi eveniet
-                    exercitationem explicabo impedit ipsum laudantium nam nesciunt odit officia pariatur placeat
-                    praesentium quam, quasi quia quis quisquam sint soluta tempore temporibus tenetur vero voluptatem
-                    voluptatum! Consequuntur ex maiores quam tempore. Aliquam consequatur consequuntur est ex facilis
-                    inventore itaque laborum provident quasi quidem, ut voluptas. Beatae consequatur delectus deserunt
-                    eligendi est et eveniet explicabo facilis hic illum incidunt ipsum iste magnam nesciunt nobis omnis
-                    perspiciatis possimus praesentium quas quia, quo quos recusandae saepe suscipit tempore veniam
-                    voluptates voluptatum.
+                    {{ movie.longDescription }}
+                </p>
             </div>
         </section>
         <section class="mt-9">
