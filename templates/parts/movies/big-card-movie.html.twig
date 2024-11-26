@@ -1,5 +1,5 @@
 <li class="relative flex flex-col rounded-xl overflow-hidden border hover:scale-105 transition cursor-pointer hover:opacity-90 hover:shadow-lg">
-    <a href="#" class="p-2.5 bg-gray-800/90 rounded-lg text-white self-end hover:bg-red-600/80 absolute top-2 right-2">
+    <a href="{{ path('page_movie_detail', {id: film.id}) }}" class="p-2.5 bg-gray-800/90 rounded-lg text-white self-end hover:bg-red-600/80 absolute top-2 right-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"
              data-darkreader-inline-fill="" style="--darkreader-inline-fill: currentColor;">
             <path fill-rule="evenodd"
@@ -7,10 +7,10 @@
                   clip-rule="evenodd"></path>
         </svg>
     </a>
-    <img src="https://fr.web.img6.acsta.net/c_310_420/pictures/18/07/02/17/25/3643090.jpg" class="h-80 object-cover"
+    <img src="{{ film.coverImage }}" class="h-80 object-cover"
          alt="">
     <div class="w-full h-full bg-white px-3 py-3 flex items-center justify-between border-t-2 border-t-red-600">
-        <span class="capitalize font-medium pr-2">Harry Potter 1 <span class="opacity-40 text-xs">(2001)</span></span>
+        <span class="capitalize font-medium pr-2">{{ film.title }}<span class="opacity-40 text-xs">({{ film.releaseDate|date('Y') }})</span></span>
         <div class="flex space-x-2 items-center text-xs">
             <svg class="w-8 h-5" xmlns="http://www.w3.org/2000/svg" width="64" height="32" viewBox="0 0 64 32"
                  version="1.1">
