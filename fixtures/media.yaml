@@ -1,10 +1,11 @@
 App\Entity\Media:
     media (template):
-        title: 'Media <current()>'
-        shortDescription: 'short description'
+        title: '<sentence()>'
+        shortDescription: '<sentence()>'
         longDescription: '<realText()>'
         releaseDate: '<datetime()>'
         coverImage: 'https://picsum.photos/400/550?random=<numberBetween(1, 100)>'
+        mediaType: '<randomElement(["movie", "serie"])>'
 
 App\Entity\Movie:
     media_movie_{1..50} (extends media):
