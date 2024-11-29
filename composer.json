@@ -73,7 +73,7 @@
             "vendor/bin/php-cs-fixer fix --dry-run --diff"
         ],
         "phpstan": [
-            "vendor/bin/phpstan analyse"
+            "vendor/bin/phpstan analyse --memory-limit=1G"
         ],
         "twigcs": [
             "vendor/bin/twigcs templates"
@@ -93,6 +93,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.6",
         "friendsofphp/php-cs-fixer": "^3.64",
         "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-doctrine": "^2.0",
         "symfony/maker-bundle": "^1.61",
         "symfony/stopwatch": "7.1.*",
         "symfony/web-profiler-bundle": "7.1.*"

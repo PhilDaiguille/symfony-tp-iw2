@@ -1,19 +1,20 @@
 App\Entity\Media:
     media (template):
-        title: '<sentence()>'
-        shortDescription: '<sentence()>'
-        longDescription: '<realText()>'
+        title: 'Media <current()>'
+        shortDescription: '<realText(20)>'
+        longDescription: '<realText(200)>'
         releaseDate: '<datetime()>'
-        coverImage: 'https://picsum.photos/400/550?random=<numberBetween(1, 100)>'
-        mediaType: '<randomElement(["movie", "serie"])>'
+        coverImage: 'https://picsum.photos/400/550?random=<current()>'
 
 App\Entity\Movie:
     media_movie_{1..50} (extends media):
         title: 'Movie <current()>'
+        categories: ['@category_*', '@category_*', '@category_*']
 
 App\Entity\Serie:
     media_serie_{1..50} (extends media):
-        title: 'Serie <current()>'
+        title: 'Série <current()>'
+        categories: ['@category_*', '@category_*', '@category_*']
 
 App\Entity\Season:
     season_1_{@media_serie*}:

@@ -4,6 +4,7 @@ App\Entity\User:
         username: '<userName()>'
         password: '<password()>'
         profilePicture: 'https://picsum.photos/400/400?random=<numberBetween(1, 100)>'
+        roles: ['ROLE_USER']
 
     user_admin (extends user_template):
         email: 'admin\@example.com'

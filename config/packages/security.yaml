@@ -5,13 +5,34 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        user_in_database:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_ADMIN: ROLE_USER_WITH_SUBSCRIPTION
+        ROLE_USER:
+        ROLE_USER_WITH_SUBSCRIPTION: ROLE_USER
+        ROLE_BASE:
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: user_in_database
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                enable_csrf: true
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: page_home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

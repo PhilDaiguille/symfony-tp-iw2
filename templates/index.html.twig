@@ -4,6 +4,12 @@
 <div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200">
     {% include 'parts/left_menu.html.twig' %}
     <main class=" flex-1 py-10  px-5 sm:px-10 ">
+        <div class="">
+            {% if app.user %}
+                <h1 class="p-3">Bonjour {{ app.user.username }}</h1>
+            {% endif %}
+        </div>
+
         <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden mb-12 ">
                 <span class="mr-6">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none"

@@ -13,6 +13,8 @@ FROM frankenphp_upstream AS frankenphp_base
 
 WORKDIR /app
 
+RUN chown -R www-data:www-data /app
+
 VOLUME /app/var/
 
 # persistent / runtime deps
@@ -100,8 +102,6 @@ RUN set -eux; \
 	composer dump-env prod; \
 	composer run-script --no-dev post-install-cmd; \
 	chmod +x bin/console; sync;
-
-USER www-data
 
 RUN set -eux; \
 	bin/console cache:clear; \
