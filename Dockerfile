@@ -13,8 +13,6 @@ FROM frankenphp_upstream AS frankenphp_base
 
 WORKDIR /app
 
-RUN chown -R www-data:www-data /app
-
 VOLUME /app/var/
 
 # persistent / runtime deps
@@ -92,6 +90,7 @@ RUN set -eux; \
 	composer install --no-cache --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress
 
 COPY --link package*.json ./
+
 # copy sources
 COPY --link . ./
 RUN rm -Rf frankenphp/
@@ -101,8 +100,6 @@ RUN set -eux; \
 	composer dump-autoload --classmap-authoritative --no-dev; \
 	composer dump-env prod; \
 	composer run-script --no-dev post-install-cmd; \
+    bin/console cache:clear; \
+	bin/console cache:warmup; \
 	chmod +x bin/console; sync;
-
-RUN set -eux; \
-	bin/console cache:clear; \
-	bin/console cache:warmup;

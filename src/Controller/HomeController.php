@@ -18,7 +18,7 @@ class HomeController extends AbstractController
         MediaRepository $mediaRepository,
     ): Response {
         $categories = $categoryRepository->findAll();
-        $movie = $mediaRepository->find(601);
+        $movie = $mediaRepository->findAll()[0];
 
         return $this->render(view: 'index.html.twig', parameters: [
             'categories' => $categories,
