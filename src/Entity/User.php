@@ -28,6 +28,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    private ?string $hashPassword = '';
+
     #[ORM\Column(enumType: UserAccountStatusEnum::class)]
     private ?UserAccountStatusEnum $accountStatus = UserAccountStatusEnum::INACTIVE;
 
@@ -333,5 +335,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function setHashPassword(string $hashPassword): void
+    {
+        $this->hashPassword = $hashPassword;
+    }
+
+    public function getHashPassword(): string
+    {
+        return $this->hashPassword;
     }
 }

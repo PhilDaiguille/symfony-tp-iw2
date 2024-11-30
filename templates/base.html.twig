@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block stylesheets %}
-            <link href="../../template-html/style/style.css" rel="stylesheet">
-        {% endblock %}
-        {% block javascripts %}
-            <script src="https://cdn.tailwindcss.com"></script>
-        {% endblock %}
-    </head>
-    <body class="font-montserrat text-sm bg-white">
-        {% block body %}
-        {% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block stylesheets %}
+        <link href="../../template-html/style/style.css" rel="stylesheet">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://cdn.tailwindcss.com"></script>
+    {% endblock %}
+</head>
+<body class="font-montserrat text-sm bg-white">
+<div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200">
+    {% block left_menu %}
+        {% include 'parts/left_menu.html.twig' %}
+    {% endblock %}
+    <main class=" flex-1 py-10  px-5 sm:px-10 ">
+        {% block content %}{% endblock %}
+    </main>
+    {% block right_menu %}
+        {% include 'parts/right_menu.html.twig' %}
+    {% endblock %}
+</div>
+</body>
 </html>
