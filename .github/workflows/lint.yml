@@ -24,6 +24,12 @@ jobs:
               with:
                   php-version: 8.3
                   extensions: intl, zip
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 22
+            - name: Install Prettier
+              run: npm install
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
             - name: Install dependencies
