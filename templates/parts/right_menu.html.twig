@@ -11,30 +11,32 @@
                class="text-xs ring-1 bg-transparent ring-gray-200 dark:ring-zinc-600 focus:ring-red-300 pl-10 pr-5 text-gray-600 py-3 rounded-full w-full outline-none focus:ring-1"
                placeholder="Search ...">
     </div>
-    <div class="mt-10">
-        <span class="font-semibold text-gray-700">Mes films en cours</span>
-        <ul class="mt-4 text-gray-400 text-xs space-y-3">
-            {% include 'parts/movies/horizontal-card-movie.html.twig' %}
-            {% include 'parts/movies/horizontal-card-movie.html.twig' %}
-            {% include 'parts/movies/horizontal-card-movie.html.twig' %}
-            <li class="pt-1">
-                <a href="{{ path('page_movie_list') }}"
-                   class="px-5 py-2.5 bg-red-600  hover:bg-red-700 rounded-lg text-center font-medium block text-white">En
-                    afficher +</a>
-            </li>
-        </ul>
-    </div>
-    <div class="mt-10">
-        <span class="font-semibold text-gray-700">Mes derniers ajouts</span>
-        <ul class="mt-4 text-gray-400 text-xs space-y-3">
-            {% include 'parts/movies/horizontal-card-movie.html.twig' %}
-            {% include 'parts/movies/horizontal-card-movie.html.twig' %}
-            {% include 'parts/movies/horizontal-card-movie.html.twig' %}
-            <li class="pt-1">
-                <a href="{{ path('page_movie_list') }}"
-                   class="px-5 py-2.5 bg-red-600 hover:bg-red-700 rounded-lg text-center font-medium block text-white">En
-                    afficher +</a>
-            </li>
-        </ul>
-    </div>
+    {% if app.user %}
+        <div class="mt-10">
+            <span class="font-semibold text-gray-700">Mes films en cours</span>
+            <ul class="mt-4 text-gray-400 text-xs space-y-3">
+                {% include 'parts/movies/horizontal-card-movie.html.twig' %}
+                {% include 'parts/movies/horizontal-card-movie.html.twig' %}
+                {% include 'parts/movies/horizontal-card-movie.html.twig' %}
+                <li class="pt-1">
+                    <a href="{{ path('page_movie_list') }}"
+                       class="px-5 py-2.5 bg-red-600  hover:bg-red-700 rounded-lg text-center font-medium block text-white">En
+                        afficher +</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mt-10">
+            <span class="font-semibold text-gray-700">Mes derniers ajouts</span>
+            <ul class="mt-4 text-gray-400 text-xs space-y-3">
+                {% include 'parts/movies/horizontal-card-movie.html.twig' %}
+                {% include 'parts/movies/horizontal-card-movie.html.twig' %}
+                {% include 'parts/movies/horizontal-card-movie.html.twig' %}
+                <li class="pt-1">
+                    <a href="{{ path('page_movie_list') }}"
+                       class="px-5 py-2.5 bg-red-600 hover:bg-red-700 rounded-lg text-center font-medium block text-white">En
+                        afficher +</a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 </aside><!-- /Right Sidebar -->

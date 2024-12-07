@@ -3,7 +3,7 @@
 {% block content %}
     <div class="">
         {% if app.user %}
-            <h1 class="p-3">Bonjour {{ app.user.username }}</h1>
+            <h1 class="py-3 text-2xl font-bold">Bonjour <span class="text-red-600">{{ app.user.username }}</span></h1>
         {% endif %}
     </div>
     <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden mb-12 ">
