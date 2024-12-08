@@ -5,16 +5,21 @@ App\Entity\Media:
         longDescription: '<realText(200)>'
         releaseDate: '<datetime()>'
         coverImage: 'https://picsum.photos/400/550?random=<current()>'
-
+        staff: ['<name()>', '<name()>', '<name()>']
+        casting: ['<name()>', '<name()>', '<name()>']
+        languages: ['@language_*', '@language_*', '@language_*']
+        
 App\Entity\Movie:
     media_movie_{1..50} (extends media):
         title: 'Movie <current()>'
         categories: ['@category_*', '@category_*', '@category_*']
+        languages: ['@language_*', '@language_*', '@language_*']
 
 App\Entity\Serie:
     media_serie_{1..50} (extends media):
         title: 'Série <current()>'
         categories: ['@category_*', '@category_*', '@category_*']
+        languages: ['@language_*', '@language_*', '@language_*']
 
 App\Entity\Season:
     season_1_{@media_serie*}:
