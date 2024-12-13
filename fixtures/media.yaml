@@ -8,7 +8,7 @@ App\Entity\Media:
         staff: ['<name()>', '<name()>', '<name()>']
         casting: ['<name()>', '<name()>', '<name()>']
         languages: ['@language_*', '@language_*', '@language_*']
-        
+
 App\Entity\Movie:
     media_movie_{1..50} (extends media):
         title: 'Movie <current()>'
