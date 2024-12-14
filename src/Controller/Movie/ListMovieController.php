@@ -15,6 +15,10 @@ class ListMovieController extends AbstractController
     #[Route('/movie', name: 'page_movie_list')]
     public function index(): Response
     {
-        return $this->render('movie/lists.html.twig');
+        $playlists = $this->getUser()->getPlaylists();
+
+        return $this->render('movie/lists.html.twig', [
+            'playlists' => $playlists,
+        ]);
     }
 }
