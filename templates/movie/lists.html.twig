@@ -68,12 +68,14 @@
             </div>
 
             <div class="relative w-full flex text-gray-700 font-medium">
-                <select
-                    class="appearance-none w-full bg-white border border-gray-200 px-7 py-3 rounded-md shadow transition">
-                    <option>#1 - Ma liste custom (43 films & 12 séries)</option>
-                    <option>#2 - Film aviations (14 films & 29 séries)</option>
-                    <option>#3 - Film a voir avec les potos (14 films & 10 séries) - Liste de John Doe</option>
-                </select>
+                <label class="w-100 relative w-full flex text-gray-700 font-medium">
+                    <select
+                        class="appearance-none w-full bg-white border border-gray-200 px-7 py-3 rounded-md shadow transition">
+                        {% for playlist in playlists %}
+                            <option value="{{ playlist.id }}">{{ playlist.name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
                 <div class="pointer-events-none absolute right-2 inset-y-0 flex items-center px-2">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <title>
