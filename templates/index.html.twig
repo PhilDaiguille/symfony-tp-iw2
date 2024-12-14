@@ -1,11 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Mes films{% endblock %}
 {% block content %}
-    <div class="">
-        {% if app.user %}
-            <h1 class="py-3 text-2xl font-bold">Bonjour <span class="text-red-600">{{ app.user.username }}</span></h1>
-        {% endif %}
-    </div>
     <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden mb-12 ">
                 <span class="mr-6">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none"

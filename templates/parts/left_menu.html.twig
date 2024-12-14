@@ -6,7 +6,11 @@
         </svg>
         <div class="tracking-wide">Streemi<span class="text-red-600">.</span></div>
     </a>
-
+    <div>
+        {% if app.user %}
+            <h1 class="pt-3 text-2xl font-bold">Bonjour <br><span class="text-red-600">{{ app.user.username }}</span></h1>
+        {% endif %}
+    </div>
     <!-- Menu -->
     <div class="mt-12 flex flex-col gap-y-4 text-gray-500 fill-gray-500 text-sm">
         <div class="text-gray-400/70  font-medium uppercase">Menu</div>
