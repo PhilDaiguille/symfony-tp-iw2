@@ -1,18 +1,18 @@
 App\Entity\Playlist:
-    playlist_{1..50}:
+    playlist_{1..25}:
         name: 'Playlist <word()>'
         createdAt: '<dateTimeBetween("-1 year", "now")>'
         updatedAt: '<dateTimeBetween("now", "+1 year")>'
         creator: '@user_*'
 
 App\Entity\PlaylistMedia:
-    playmedia_{1..500}:
+    playmedia_{1..200}:
         addedAt: '<dateTimeBetween("-1 year", "now")>'
         playlist: '@playlist_*'
         media: '@media_*'
 
 App\Entity\PlaylistSubscription:
-    playsub_{1..500}:
+    playsub_{1..200}:
         playlist: '@playlist_*'
         subscriber: '@user_*'
         subscribedAt: '<dateTimeBetween("-1 year", "now")>'

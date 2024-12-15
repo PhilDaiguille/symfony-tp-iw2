@@ -11,13 +11,13 @@ App\Entity\Media:
         rating: '<numberBetween(20, 100)>'
 
 App\Entity\Movie:
-    media_movie_{1..50} (extends media):
+    media_movie_{1..25} (extends media):
         title: 'Movie <words(3, true)>'
         categories: ['@category_*', '@category_*', '@category_*']
         languages: ['@language_*', '@language_*', '@language_*']
 
 App\Entity\Serie:
-    media_serie_{1..50} (extends media):
+    media_serie_{1..25} (extends media):
         title: 'Série <words(3, true)>'
         categories: ['@category_*', '@category_*', '@category_*']
         languages: ['@language_*', '@language_*', '@language_*']
@@ -34,14 +34,14 @@ App\Entity\Season:
         serie: '<current()>'
 
 App\Entity\Episode:
-    episode_{1..500}:
+    episode_{1..200}:
         title: '<sentence()>'
         duration: '<numberBetween(45, 90)>'
         releasedAt: "<dateTimeBetween('-1 week', '+1 week')>"
         season: '@season_*'
 
 App\Entity\WatchHistory:
-    watch_history_{1..500}:
+    watch_history_{1..200}:
         lastWatchedAt: "<dateTimeBetween('-1 week', '+1 week')>"
         numberOfViews: '<numberBetween(1, 100)>'
         watcher: '@user_*'

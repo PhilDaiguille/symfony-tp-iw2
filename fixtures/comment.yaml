@@ -5,7 +5,7 @@ App\Entity\Comment:
         publisher: '@user_*'
         media: '@media_*'
 
-    comment_{1..200} (extends comment_template):
+    comment_{1..100} (extends comment_template):
 
-    comment_with_parent_{1..20} (extends comment_template):
+    comment_with_parent_{1..10} (extends comment_template):
         parentComment: '@comment_*'
