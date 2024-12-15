@@ -1,5 +1,5 @@
 <li class="relative flex flex-col rounded-xl overflow-hidden aspect-square border">
-    <a href="#" class="p-2.5 bg-gray-800/90 rounded-lg text-white self-end hover:bg-red-600/80 absolute top-2 right-2">
+    <a href="{{ path('page_movie_detail', {'id':movie.id}) }}" class="p-2.5 bg-gray-800/90 rounded-lg text-white self-end hover:bg-red-600/80 absolute top-2 right-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"
              data-darkreader-inline-fill="" style="--darkreader-inline-fill: currentColor;">
             <path fill-rule="evenodd"
@@ -7,10 +7,10 @@
                   clip-rule="evenodd"></path>
         </svg>
     </a>
-    <img src="https://upload.wikimedia.org/wikipedia/en/1/14/Tenet_movie_poster.jpg"
+    <img src="{{ movie.coverImage }}"
          class=" h-4/5 object-cover w-full  " alt="">
     <div class="w-full h-full bg-white px-3 flex items-center justify-between border-t-2 border-t-red-600">
-        <span class="capitalize font-medium pr-2"><span class="text-red-600 font-bold">#1</span> - Tenet</span>
+        <span class="capitalize font-medium pr-2"><span class="text-red-600 font-bold">#{{ loop.index }}&nbsp;</span>{{ movie.title }}</span>
         <div class="flex space-x-2 items-center text-xs">
             <svg class="w-8 h-5" xmlns="http://www.w3.org/2000/svg" width="64" height="32" viewBox="0 0 64 32"
                  version="1.1">
@@ -27,7 +27,7 @@
                         d="M44.4299079,4.50685823 L44.749518,4.50685823 C46.5447098,4.50685823 48,5.91267586 48,7.64486762 L48,14.8619906 C48,16.5950653 46.5451816,18 44.749518,18 L44.4299079,18 C43.3314617,18 42.3602746,17.4736618 41.7718697,16.6682739 L41.4838962,17.7687785 L37,17.7687785 L37,0 L41.7843263,0 L41.7843263,5.78053556 C42.4024982,5.01015739 43.3551514,4.50685823 44.4299079,4.50685823 Z M43.4055679,13.2842155 L43.4055679,9.01907814 C43.4055679,8.31433946 43.3603268,7.85185468 43.2660746,7.63896485 C43.1718224,7.42607505 42.7955881,7.2893916 42.5316822,7.2893916 C42.267776,7.2893916 41.8607934,7.40047379 41.7816216,7.58767002 L41.7816216,9.01907814 L41.7816216,13.4207851 L41.7816216,14.8074788 C41.8721037,15.0130276 42.2602358,15.1274059 42.5316822,15.1274059 C42.8031285,15.1274059 43.1982131,15.0166981 43.281155,14.8074788 C43.3640968,14.5982595 43.4055679,14.0880581 43.4055679,13.2842155 Z"></path>
                 </g>
             </svg>
-            <span>7.4</span>
+            <span>{{ movie.rating }}</span>
         </div>
     </div>
 </li>

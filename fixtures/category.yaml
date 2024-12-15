@@ -1,19 +1,37 @@
 App\Entity\Category:
+    category (template):
+        name: '<word()>'
+        label: '<word()>'
+        medias: []
+        image: '<svg()>'
     category_action:
         nom: 'action'
         label: 'Action'
+        image: 'assets/images/category-action-red.svg'
     category_aventure:
         nom: 'aventure'
         label: 'Aventure'
+        image: 'assets/images/category-adventure-red.svg'
     category_comedie:
         nom: 'comedie'
         label: 'Comedie'
+        image: 'assets/images/category-comedy-red.svg'
     category_drame:
         nom: 'drame'
         label: 'Drame'
+        image: 'assets/images/category-sf-red.svg'
     category_fantastique:
         nom: 'fantastique'
         label: 'Fantastique'
     category_horreur:
         nom: 'horreur'
         label: 'Horreur'
+    category_romance:
+        nom: 'romance'
+        label: 'Romance'
+    category_sf:
+        nom: 'sf'
+        label: 'Science-Fiction'
+    category_thriller:
+        nom: 'thriller'
+        label: 'Thriller'

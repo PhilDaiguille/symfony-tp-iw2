@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Streemi - Confirmation du compte{% endblock %}
 {% block content %}
-    <div class="flex min-h-screen">
-        {% include 'parts/left_menu.html.twig' %}
         <main class="flex-1">
             <header class=" font-bold text-lg flex items-center md:hidden">
                 <span class="mr-6">
@@ -33,7 +31,7 @@
 
                             <div class="flex items-center justify-center mt-8">
                                 <a class="text-red-600 cursor-pointer transition hover:text-red-700 hover:scale-105"
-                                   href="{{ path('page_login') }}">
+                                   href="{{ path('app_login') }}">
                                     Vous pouvez vous connecter ici
                                 </a>
                             </div>
@@ -42,5 +40,4 @@
                 </div>
             </section>
         </main>
-    </div>
 {% endblock %}
