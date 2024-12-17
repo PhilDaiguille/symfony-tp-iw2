@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MovieController extends AbstractController
 {
-    #[Route('/movie/{id}', name: 'page_movie_detail')]
+    #[Route('/media/{id}', name: 'page_movie_detail')]
     public function detail(
         string $id,
         MovieRepository $movieRepository,
@@ -30,7 +30,7 @@ class MovieController extends AbstractController
         ]);
     }
 
-    #[Route('/movie/detail-serie', name: 'page_movie_detail_serie')]
+    #[Route('/movie/serie', name: 'page_movie_detail_serie')]
     public function detail_serie(): Response
     {
         return $this->render('movie/detail_serie.html.twig');

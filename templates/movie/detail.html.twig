@@ -109,6 +109,38 @@
         </div>
     </section>
     <section class="mt-9">
+        {% if movie.seasons is defined %}
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-lg font-medium text-black">Les <span class="font-bold text-red-600">épisodes</span></h2>
+                <ul>
+                    {% for season in movie.seasons %}
+                        <h3>Saison {{ season.number }}</h3>
+                            {% for episode in season.episodes %}
+                                <li class="mt-4 flex flex-row gap-y-5 p-4 rounded-lg transition cursor-pointer hover:bg-gray-100">
+                                    <div
+                                        class="relative flex flex-col rounded-xl w-1/5 overflow-hidden aspect-square border cursor-pointer transition hover:shadow-md bg-center bg-cover"
+                                        style="background-image: url('https://www.numerama.com/wp-content/uploads/2024/05/psych-shawn-kate-gus.jpg')">
+                                        <div
+                                            class="absolute top-0 left-0 w-full h-full bg-black/10 flex items-center justify-center text-white hover:bg-black/60 transition opacity-10 hover:opacity-100">
+                                            <svg class="h-12 w-12 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 24 24">
+                                                <title>play</title>
+                                                <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start justify-center w-4/5 flex-col pl-8">
+                                        <h2 class="font-bold text-xl">{{ episode.title }}</h2>
+                                        <h3 class="font-medium text-lg text-black/70">S{{ season.number }}- E{{ loop.index }}</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias autem exercitationem
+                                            harum natus necessitatibus nesciunt provident quasi quo sint tenetur.</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <div class="max-w-3xl mx-auto">
             <h2 class="text-lg font-medium text-black"><span class="font-bold text-red-600">Infos</span> du film
             </h2>
@@ -154,113 +186,42 @@
                 film
             </h2>
             <ul class="mt-9 grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5">
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Christopher_Nolan_Cannes_2018.jpg/520px-Christopher_Nolan_Cannes_2018.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                                    <span
-                                        class="capitalize text-white font-medium drop-shadow-md">Christopher Nolan</span>
-                            <span class="text-gray-100 text-xs">Réalisateur</span>
+                {% for team in movie.staff %}
+                    <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Christopher_Nolan_Cannes_2018.jpg/520px-Christopher_Nolan_Cannes_2018.jpg"
+                            class="object-cover h-full w-full -z-10" alt="">
+                        <div
+                            class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
+                            <div class="self-center flex flex-col items-center space-y-2">
+                                        <span
+                                            class="capitalize text-white font-medium drop-shadow-md">{{ team }}</span>
+                                <span class="text-gray-100 text-xs">Réalisateur</span>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Hans-Zimmer-profile.jpg/400px-Hans-Zimmer-profile.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                            <span class="capitalize text-white font-medium drop-shadow-md">Hans Zimmer</span>
-                            <span class="text-gray-100 text-xs">Compositeur</span>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="max-w-3xl mx-auto mt-9">
             <h2 class="text-lg font-medium text-black">Le <span class="font-bold text-red-600">Casting</span>
             </h2>
             <ul class="mt-9 grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5">
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Leonardo_Dicaprio_Cannes_2019.jpg/500px-Leonardo_Dicaprio_Cannes_2019.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                                    <span
-                                        class="capitalize text-white font-medium drop-shadow-md">Leonardo DiCaprio</span>
-                            <span class="text-gray-100 text-xs truncate">Dominic Cobb, l'extracteur</span>
+                {% for casting in movie.casting %}
+                    <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Leonardo_Dicaprio_Cannes_2019.jpg/500px-Leonardo_Dicaprio_Cannes_2019.jpg"
+                            class="object-cover h-full w-full -z-10" alt="">
+                        <div
+                            class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
+                            <div class="self-center flex flex-col items-center space-y-2">
+                                        <span
+                                            class="capitalize text-white font-medium drop-shadow-md">{{ casting }}</span>
+                                <span class="text-gray-100 text-xs truncate">Dominic Cobb, l'extracteur</span>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Joseph_Gordon-Levitt_by_Gage_Skidmore_2.jpg/440px-Joseph_Gordon-Levitt_by_Gage_Skidmore_2.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                                <span
-                                    class="capitalize text-white font-medium drop-shadow-md">Joseph Gordon-Levitt</span>
-                            <span class="text-gray-100 text-xs truncate">Arthur, l'organisateur</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/2023_National_Book_Festival_%2853122454007%29_%28cropped%29.jpg/440px-2023_National_Book_Festival_%2853122454007%29_%28cropped%29.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                                <span
-                                    class="capitalize text-white font-medium drop-shadow-md">Elliot (Ellen) Page</span>
-                            <span class="text-gray-100 text-xs truncate">Ariane, l'architecte</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Marion_Cotillard_at_2019_Cannes.jpg/440px-Marion_Cotillard_at_2019_Cannes.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                                    <span
-                                        class="capitalize text-white font-medium drop-shadow-md">Marion Cotillard</span>
-                            <span class="text-gray-100 text-xs truncate">Mallorie Cobb, l'ombre</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Tom_Hardy_by_Gage_Skidmore.jpg/520px-Tom_Hardy_by_Gage_Skidmore.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                            <span class="capitalize text-white font-medium drop-shadow-md">Tom Hardy</span>
-                            <span class="text-gray-100 text-xs truncate">Eames, le faussaire</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="relative rounded-xl overflow-hidden transition cursor-pointer hover:scale-105 hover:opacity-90 hover:shadow-md">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Ken_Watanabe_01.jpg/440px-Ken_Watanabe_01.jpg"
-                        class="object-cover h-full w-full -z-10" alt="">
-                    <div
-                        class="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-end">
-                        <div class="self-center flex flex-col items-center space-y-2">
-                            <span class="capitalize text-white font-medium drop-shadow-md">Ken Watanabe</span>
-                            <span class="text-gray-100 text-xs truncate">Mr. Saito, le touriste</span>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="max-w-3xl mx-auto mt-9">
@@ -282,74 +243,36 @@
                     <li class="mt-9">
                         <div class="bg-gray-100 p-4 rounded-lg">
                             <div class="flex items-center">
-                                <img src="https://random.imagecdn.app/100/100?a" class="w-10 h-10 rounded-full"
-                                     alt="">
+                                <img src="https://random.imagecdn.app/100/100?a" class="w-10 h-10 rounded-full" alt="">
                                 <div class="ml-4 w-full">
                                     <span class="font-medium">{{ comment.publisher.username }}</span>
-                                    <span
-                                        class="text-xs text-gray-500 flex items-center justify-between w-full">
-                                        <span>Il y a 2 jours</span>
-                                        <span></span>
-                                    </span>
+                                    <span class="text-xs text-gray-500 flex items-center justify-between w-full">
+                                    <span>Il y a 2 jours</span>
+                                    <span></span>
+                                </span>
                                 </div>
                             </div>
                             <p class="mt-4 w-full">{{ comment.content }}</p>
                         </div>
                     </li>
+                    {% for childComment in comment.childComments %}
+                        <li class="mt-9 border-l-4 pl-4">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <div class="flex items-center">
+                                    <img src="https://random.imagecdn.app/100/100?a" class="w-10 h-10 rounded-full" alt="">
+                                    <div class="ml-4 w-full">
+                                        <span class="font-medium">{{ childComment.publisher.username }}</span>
+                                        <span class="text-xs text-gray-500 flex items-center justify-between w-full">
+                                    <span>Il y a 2 jours</span>
+                                    <span></span>
+                                </span>
+                                    </div>
+                                </div>
+                                <p class="mt-4 w-full">{{ childComment.content }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
                 {% endfor %}
-                <li class="mt-9 pl-9 border-l-4">
-                    <div class="bg-gray-100 p-4 rounded-lg">
-                        <div class="flex items-center">
-                            <img src="https://random.imagecdn.app/100/100?b" class="w-10 h-10 rounded-full"
-                                 alt="">
-                            <div class="ml-4 w-full">
-                                <span class="font-medium">Jane Doe</span>
-                                <span class="text-xs text-gray-500 flex items-center justify-between w-full">
-                                    <span>Il y a 4 heures</span>
-                                    <span></span>
-                                </span>
-                            </div>
-                        </div>
-                        <p class="mt-4 w-full">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Aliquam,
-                            consectetur deleniti deserunt ducimus harum iusto laboriosam minima nobis
-                            obcaecati.</p>
-                    </div>
-                </li>
-                <li class="mt-9 pl-9 border-l-4">
-                    <div class="bg-gray-100 p-4 rounded-lg">
-                        <div class="flex items-center">
-                            <img src="https://random.imagecdn.app/100/100?c" class="w-10 h-10 rounded-full"
-                                 alt="">
-                            <div class="ml-4 w-full">
-                                <span class="font-medium">Marco Doe</span>
-                                <span class="text-xs text-gray-500 flex items-center justify-between w-full">
-                                    <span>Il y a 1 heures</span>
-                                    <span></span>
-                                </span>
-                            </div>
-                        </div>
-                        <p class="mt-4 w-full">Lorem ipsum dolor sit amet !!</p>
-                    </div>
-                </li>
-                <li class="mt-9 pl-9 border-l-4 relative cursor-not-allowed">
-                    <span
-                        class="absolute top-2 right-2 px-3 py-1 bg-orange-100 rounded-md">En attente de vérification</span>
-                    <div class="bg-gray-100 p-4 rounded-lg opacity-40">
-                        <div class="flex items-center">
-                            <img src="https://random.imagecdn.app/100/100?c" class="w-10 h-10 rounded-full"
-                                 alt="">
-                            <div class="ml-4 w-full">
-                                <span class="font-medium">Harry Potter</span>
-                                <span class="text-xs text-gray-500 flex items-center justify-between w-full">
-                                    <span>Il y a 1O secondes</span>
-                                    <span></span>
-                                </span>
-                            </div>
-                        </div>
-                        <p class="mt-4 w-full">Lorem ipsum dolor sit amet !!</p>
-                    </div>
-                </li>
             </ul>
             <form class="mt-9 bg-gray-100 p-4 rounded-lg">
                 <h3 class="text-center text-md font-bold my-4">Réagir / commenter le film ?</h3>
