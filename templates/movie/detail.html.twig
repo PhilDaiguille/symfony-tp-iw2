@@ -255,20 +255,20 @@
                             <p class="mt-4 w-full">{{ comment.content }}</p>
                         </div>
                     </li>
-                    {% for childComment in comment.childComments %}
+                    {% for child_comment in comment.childComments %}
                         <li class="mt-9 border-l-4 pl-4">
                             <div class="bg-gray-100 p-4 rounded-lg">
                                 <div class="flex items-center">
                                     <img src="https://random.imagecdn.app/100/100?a" class="w-10 h-10 rounded-full" alt="">
                                     <div class="ml-4 w-full">
-                                        <span class="font-medium">{{ childComment.publisher.username }}</span>
+                                        <span class="font-medium">{{ child_comment.publisher.username }}</span>
                                         <span class="text-xs text-gray-500 flex items-center justify-between w-full">
                                     <span>Il y a 2 jours</span>
                                     <span></span>
                                 </span>
                                     </div>
                                 </div>
-                                <p class="mt-4 w-full">{{ childComment.content }}</p>
+                                <p class="mt-4 w-full">{{ child_comment.content }}</p>
                             </div>
                         </li>
                     {% endfor %}

@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -143,7 +144,7 @@ class AuthController extends AbstractController
         }
 
         return $this->render('auth/reset.html.twig', [
-            'resetForm' => $form,
+            'form' => $form,
         ]);
     }
 
@@ -153,6 +154,9 @@ class AuthController extends AbstractController
         return $this->render('auth/confirm.html.twig');
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer): RedirectResponse
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
@@ -181,7 +185,7 @@ class AuthController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('streami@noreply.com', 'Streami'))
+            ->from(new Address('streemi@gmail.com', 'Streemi'))
             ->to((string) $user->getEmail())
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')
