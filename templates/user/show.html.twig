@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl font-bold mb-6 text-center">User</h1>
+    <table class="min-w-full bg-white border border-gray-300">
+        <tbody>
+            <tr>
+                <th class="px-4 py-2 border-b">Id</th>
+                <td class="px-4 py-2 border-b">{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th class="px-4 py-2 border-b">Username</th>
+                <td class="px-4 py-2 border-b">{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th class="px-4 py-2 border-b">Email</th>
+                <td class="px-4 py-2 border-b">{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th class="px-4 py-2 border-b">Password</th>
+                <td class="px-4 py-2 border-b">{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th class="px-4 py-2 border-b">AccountStatus</th>
+                <td class="px-4 py-2 border-b">{{ user.accountStatus.name }}</td>
+            </tr>
+            <tr>
+                <th class="px-4 py-2 border-b">ProfilePicture</th>
+                <td class="px-4 py-2 border-b">{{ user.profilePicture }}</td>
+            </tr>
+            <tr>
+                <th class="px-4 py-2 border-b">Roles</th>
+                <td class="px-4 py-2 border-b">{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4 text-center">
+        <a href="{{ path('app_user_index') }}" class="text-blue-500 hover:underline">back to list</a>
+        <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-blue-500 hover:underline">edit</a>
+    </div>
+
+    {{ include('user/_delete_form.html.twig') }}
+    {% block right_menu %}{% endblock %}
+{% endblock %}
