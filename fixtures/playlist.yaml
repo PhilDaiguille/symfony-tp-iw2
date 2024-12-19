@@ -1,5 +1,5 @@
 App\Entity\Playlist:
-    playlist_{1..25}:
+    playlist_{1..50}:
         name: 'Playlist <word()>'
         createdAt: '<dateTimeBetween("-1 year", "now")>'
         updatedAt: '<dateTimeBetween("now", "+1 year")>'
