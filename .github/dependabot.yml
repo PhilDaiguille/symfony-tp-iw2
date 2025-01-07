@@ -1,0 +1,15 @@
+# Configuration Dependabot pour Symfony avec Composer et Docker
+version: 2
+updates:
+  # Gestion des dépendances PHP avec Composer
+  - package-ecosystem: "composer"
+    directory: "/" # Racine où se trouve le fichier composer.json
+    schedule:
+      interval: "weekly" # Vérifications des mises à jour chaque semaine
+      
+  # Gestion des mises à jour pour le Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/" # Racine où se trouve le Dockerfile
+    schedule:
+      interval: "weekly"
+
