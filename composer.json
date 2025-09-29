@@ -26,7 +26,7 @@
         "symfony/monolog-bundle": "^3.0",
         "symfony/runtime": "7.2.*",
         "symfony/security-bundle": "7.2.*",
-        "symfony/twig-bundle": "7.2.*",
+        "symfony/twig-bundle": "7.3.*",
         "symfony/validator": "7.3.*",
         "symfony/yaml": "7.2.*",
         "symfonycasts/reset-password-bundle": "^1.23",
